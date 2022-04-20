@@ -43,6 +43,7 @@ export interface CurrentMatch {
 
 
 export interface AppState {
+  whoStarts: Player
   hasPlayed: boolean
   current: CurrentMatch
 }
@@ -56,8 +57,10 @@ export const AppContext = createContext<{
   resumeGame: () => void
   declareVictory: () => void
   moveHuman: (id: string) => void
+  resetStarter: (p: Player) => void
 }>({
   state: {
+    whoStarts: Player.HUMAN,
     hasPlayed: false,
     current: {
       islands: [],
@@ -73,6 +76,7 @@ export const AppContext = createContext<{
   pauseGame: () => {},
   moveHuman: () => {},
   resumeGame: () => {},
+  resetStarter: () => {},
   declareVictory: () => {}
 })
 

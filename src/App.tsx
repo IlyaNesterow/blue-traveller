@@ -4,6 +4,7 @@ import Global from './styles'
 import Timer from './components/time'
 import Header from './components/header'
 import Result from './components/result'
+import Toggler from './components/toggler'
 import Polygon from './components/polygon'
 import Controls from './components/controls'
 import { css, StyleSheet } from 'aphrodite'
@@ -15,6 +16,8 @@ import {
 
 function App() {
   const [hasPlayed, setHasPlayed] = useState(false)
+
+  const [mode, setMode] = useState(Player.HUMAN)
 
   const [currentMatch, setCurrentMatch] = useState<CurrentMatch>({
     humanCanMove: false,
@@ -30,7 +33,7 @@ function App() {
 
   const endGame = () => {
     setCurrentMatch({
-      humanCanMove: false,
+      humanCanMove: mode === Player.HUMAN,
       isRunning: false,
       isPaused: false,
       result: null,
@@ -121,7 +124,7 @@ function App() {
     }
     
     setCurrentMatch((m) => ({ 
-      result: null, islands, humanCanMove: true,
+      result: null, islands, humanCanMove: mode === Player.HUMAN,
       isPaused: false, isRunning: true,
       players: [
         { role: Player.HUMAN, currentIsland: 'human-start', visitedIslands: ['human-start'] },
@@ -273,11 +276,15 @@ function App() {
     }))
   }
 
+  const resetStarter = (p: Player) => {
+    setMode(p)
+  }
+
   return (
     <AppContext.Provider value={{
-      state: { current: currentMatch, hasPlayed }, 
+      state: { current: currentMatch, hasPlayed, whoStarts: mode }, 
       resumeGame, moveHuman, pauseGame, startGame, 
-      endGame, declareVictory
+      endGame, declareVictory, resetStarter
     }}>
       <Global/>
       <main>
@@ -285,6 +292,7 @@ function App() {
           <div className={css(component.centred)}>
             <div className={css(component.layout)}>
               <Header/>
+              <Toggler/>
               <Result/>
               <Timer/>
               <Polygon/>
