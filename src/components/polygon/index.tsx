@@ -34,10 +34,10 @@ const component = StyleSheet.create({
     width: 770,
     marginBottom: 20,
     '@media (max-width: 809px)': {
-      transform: 'scale(0.75)'
+      transform: 'scale(0.7)'
     },
     '@media (max-width: 609px)': {
-      transform: 'scale(0.6)'
+      transform: 'scale(0.5)'
     },
     '@media (max-width: 409px)': {
       transform: 'scale(0.3)'
