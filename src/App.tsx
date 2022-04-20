@@ -1,26 +1,56 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import Global from './styles'
+import Timer from './components/time'
+import Header from './components/header'
+import Polygon from './components/polygon'
+import Controls from './components/controls'
+import { css, StyleSheet } from 'aphrodite'
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <Global/>
+      <main>
+        <div className={css(component.container)}>
+          <div className={css(component.centred)}>
+            <div className={css(component.layout)}>
+              <Header/>
+              <Timer/>
+              <Polygon/>
+              <Controls/>
+            </div>
+          </div>
+        </div>
+      </main>
+    </>
+  )
 }
+
+const component = StyleSheet.create({
+  container: {
+    position: 'relative',
+    minHeight: 500,
+    height: '100%',
+    width: '100%'
+  },
+  centred: {
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  layout: {
+    width: 800,
+    display: 'flex',
+    padding: '70px 0',
+    alignItems: 'center',
+    flexDirection: 'column',
+    '@media (max-width: 809px)': {
+      width: '100%'
+    }
+  }
+})
 
 export default App;
