@@ -28,6 +28,7 @@ export interface Island {
     readonly x: number
   }
   isTaken: boolean
+  score: number
 }
 
 
@@ -53,8 +54,8 @@ export const AppContext = createContext<{
   startGame: () => void
   pauseGame: () => void
   resumeGame: () => void
+  declareVictory: () => void
   moveHuman: (id: string) => void
-  declareWinner: (p: Player) => void
 }>({
   state: {
     hasPlayed: false,
@@ -72,7 +73,7 @@ export const AppContext = createContext<{
   pauseGame: () => {},
   moveHuman: () => {},
   resumeGame: () => {},
-  declareWinner: () => {}
+  declareVictory: () => {}
 })
 
 

@@ -5,7 +5,7 @@ import { Finish, Human, Computer } from '../../assets'
 
 
 const Target = () => {
-  const { state, declareWinner } = useContext(AppContext)
+  const { state, declareVictory } = useContext(AppContext)
 
   const { 
     isRunning, players, isPaused,
@@ -65,9 +65,9 @@ const Target = () => {
   return(
     <div className={css(component.container)}>
       <button 
-        disabled={!available}
+        disabled={!available || !!result}
+        onClick={() => declareVictory()}
         className={css(component.button)}
-        onClick={() => declareWinner(Player.HUMAN)}
       >
         <div className={css(component.relative)}>
           <div className={css(style.shadow)}/>

@@ -31,11 +31,21 @@ const Polygon = () => {
 
 const component = StyleSheet.create({
   size: {
-    width: '100%',
-    marginBottom: 20
+    width: 770,
+    marginBottom: 20,
+    '@media (max-width: 809px)': {
+      transform: 'scale(0.75)'
+    },
+    '@media (max-width: 609px)': {
+      transform: 'scale(0.6)'
+    },
+    '@media (max-width: 409px)': {
+      transform: 'scale(0.3)'
+    }
   },
   frame: {
     border: 'solid 1px var(--dark-clr)',
+    boxShadow: 'var(--plain-shadow)',
     overflow: 'hidden',
     borderRadius: 8,
     height: 490

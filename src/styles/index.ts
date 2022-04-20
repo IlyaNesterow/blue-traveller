@@ -10,18 +10,11 @@ const Global = createGlobalStyle`
     --title-clr: #333;
     --blue: #00a6ff;
     --gold-clr: #FFD700;
-    --grey: #777;
     --dark-clr: #222;
-    --almost-white: #eee;
     --dark-green: #158151;
     --dark-red: #c44444;
-    --disabled: #aaa;
-    --box-shadow: 0px 16px 32px rgb(0 0 0 / 15%), 0px 3px 8px rgb(0 0 0 / 10%);
     --plain-shadow: 0px 6px 20px rgb(0 0 0 / 20%);
     --body-clr: #fff;
-    --bright-bg: #fafafa;
-    --opposite-contrast: #000;
-    --btn-clr: linear-gradient(to left, #00cc66, #0072ff);
   }
   *{
     margin: 0 !important;

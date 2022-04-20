@@ -11,7 +11,7 @@ interface Props {
 const Point: React.FC<Props> = ({ data }) => {
   const { state, moveHuman } = useContext(AppContext)
 
-  const { players, islands, humanCanMove, isRunning, isPaused } = state.current
+  const { players, islands, humanCanMove, isRunning, isPaused, result } = state.current
 
   const [opened, setOpened] = useState(false)
 
@@ -51,7 +51,7 @@ const Point: React.FC<Props> = ({ data }) => {
         : 'var(--dark-green)'
     },
     shadow: {
-      backgroundColor: opened && !isPaused ? 'transparent' : '#ffffff33',
+      backgroundColor: opened && !isPaused && !result ? 'transparent' : '#ffffff33',
       position: 'absolute',
       borderRadius: '50%',
       height: '100%',
@@ -67,6 +67,12 @@ const Point: React.FC<Props> = ({ data }) => {
         height: 20,
         width: 20
       }
+    },
+    focus: {
+      transition: 'opacity .5s',
+      ':focus-visible': {
+        opacity: 0.5
+      }
     }
   })
 
@@ -74,8 +80,8 @@ const Point: React.FC<Props> = ({ data }) => {
     <div className={css(style.position)}>
       <button 
         onClick={() => moveHuman(id)}
-        className={css(component.btn)}
-        disabled={!opened || isPaused}
+        className={css(component.btn, style.focus)}
+        disabled={!opened || isPaused || !!result || !!player}
       >
         <div className={css(style.bg)}>
           <div className={css(style.shadow)}/>
