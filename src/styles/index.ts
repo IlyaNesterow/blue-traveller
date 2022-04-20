@@ -8,6 +8,7 @@ const Global = createGlobalStyle`
     --white-clr: #fff;
     --font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, 'Ubuntu', 'Oxygen', Helvetica Neue, sans-serif !important;
     --title-clr: #333;
+    --blue: #00a6ff;
     --gold-clr: #FFD700;
     --grey: #777;
     --dark-clr: #222;

@@ -1,17 +1,26 @@
 import { useContext, useEffect, useState } from 'react'
 import { css, StyleSheet } from 'aphrodite'
+import { AppContext } from '../../tools'
 
 
 const Timer = () => {
+  const { isRunning, isPaused, islands } = useContext(AppContext).state.current
+
   const [seconds, setSeconds] = useState(0)
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setSeconds((s) => s + 1)
-    }, 1000)
+    if(islands.length === 0) setSeconds(0)
+  }, [islands])
 
-    return () => clearInterval(interval)
-  }, [])
+  useEffect(() => {
+    if(isRunning && !isPaused) {
+      const interval = setInterval(() => {
+        setSeconds((s) => s + 1)
+      }, 1000)
+
+      return () => clearInterval(interval)
+    }
+  }, [isRunning, isPaused])
 
   const getTime = () => {
     const mins = Math.floor(seconds / 60)
@@ -20,8 +29,6 @@ const Timer = () => {
 
     return `${mins > 9 ? mins : `0${mins}`} : ${secs > 9 ? secs : `0${secs}`}`
   }
-
-  console.log(seconds)
 
   return(
     <section className={css(component.container)}>

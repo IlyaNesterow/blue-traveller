@@ -4,22 +4,16 @@ import { corePhrases } from '../../tools/phrases'
 import { AppContext } from '../../tools' 
 
 
-const Start = () => {
-  const { state, startGame } = useContext(AppContext)
-
-  const { hasPlayed } = state
+const End = () => {
+  const { endGame } = useContext(AppContext)
 
   return(
     <button 
       className={css(component.btn)}
-      onClick={startGame}
+      onClick={endGame}
     >
       <div className={css(component.beforeBtn)}/>
-        {
-          hasPlayed
-            ? corePhrases.btns.try_again
-            : corePhrases.btns.start
-        }
+        {corePhrases.btns.end}
     </button>
   )
 }
@@ -35,7 +29,7 @@ const component = StyleSheet.create({
     transition: 'all .3s',
     color: 'var(--white-clr)',
     padding: '10px 24px',
-    background: 'var(--btn-clr)',
+    backgroundColor: 'var(--dark-clr)',
     borderRadius: 8,
     touchAction: 'manipulation',
     '@media (hover: hover) and (pointer: fine)': {
@@ -68,4 +62,4 @@ const component = StyleSheet.create({
   }
 })
 
-export default Start
+export default End
